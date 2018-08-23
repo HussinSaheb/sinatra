@@ -5,10 +5,7 @@
     <title><%= @post[:title] %></title>
   </head>
   <body>
-    <nav>
-      <a href="/">Posts</a>
-      <a href="/new">New Posts</a>
-    </nav>
+    <%= erb(:'partials/navigation', :layout => false) %>
     <form>
       <label for=""><%= @post[:title] %></label>
       <input type="text" name="" value="<%= @post[:post_body] %>">
