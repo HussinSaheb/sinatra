@@ -1,0 +1,17 @@
+<form action="/<%= @post[:id] %>" method="post">
+  <div >
+    <label for="title">Post Title</label>
+    <input type="text" name="title" value="<%= @post[:title]%>">
+  </div>
+  <div class="">
+    <label for="post_body">Body</label>
+    <textarea name="post_body"><%= @post[:post_body] %></textarea>
+  </div>
+  <div >
+    <input type="submit" value="Save Post">
+  </div>
+  <!-- if the post field is not empty, as in we can update, we use put -->
+  <% if @post[:id] != "" %>
+    <input type="hidden" name="_method" value="PUT">
+  <% end %>
+</form>

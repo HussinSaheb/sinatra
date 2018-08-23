@@ -29,7 +29,7 @@ class PostsController < Sinatra::Base
       id: 3,
       title: 'post 3',
       post_body: "this is the third post"
-    },]
+    }]
 
   get '/' do
     @title = "Blog Posts"
@@ -38,12 +38,26 @@ class PostsController < Sinatra::Base
   end
 
   get '/new' do
-    "new"
+    @title = "New Post"
+    @post = {
+      id: '',
+      title: '',
+      post_body: ''
+    }
+
+    erb :'posts/new'
   end
 
   post '/' do
-    "create new post"
+    new_post = {
+      id: $posts.length(),
+      title: params[:title],
+      post_body: params[:post_body]
+    }
+    $posts.push(new_post)
+    redirect "/"
   end
+
 
   get '/:id' do
     id = params[:id].to_i
@@ -52,17 +66,25 @@ class PostsController < Sinatra::Base
   end
 
   get '/:id/edit' do
+    @title= "Edit Post"
     id = params[:id].to_i
     @post = $posts[id]
     erb :'posts/edit'
   end
 
   put '/:id' do
-    "updating the post with the #{id}"
+    id = params[:id].to_i
+    post = $posts[id]
+    post[:title] = params[:title]
+    post[:post_body] = params[:post_body]
+    $posts[id] = post
+    redirect "/"
   end
 
   delete '/:id' do
-    "deletes a post with the #{id}"
+    id = params[:id].to_i
+    $posts.delete_at(id)
+    redirect "/"
   end
 
 
