@@ -1,7 +1,7 @@
-<h1><%= @post[:title] %></h1>
-<p><%= @post[:post_body] %></p>
-<form class="" action="/<%= @post[:id] %>" method="post">
+<h1><%= @post.title %></h1>
+<p><%= @post.post_body %></p>
+<form class="" action="/<%= @post.id %>" method="post">
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete">
 </form>
-<a href="/<%= @post[:id] %>/edit">edit</a>
+<a href="/<%= @post.id %>/edit">edit</a>
